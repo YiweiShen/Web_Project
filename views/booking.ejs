@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking</title>
 </head>
+
 <body>
-    
+    <h1>Welcome!</h1>
+    <!-- add username who login after the welcome word -->
+    <h2>List of the available movies</h2>
+    <section data-position="movies">
+        <% for ( var i=0; i<movieList.length; i++) { %>
+        <%= movieList[i].movieId %> &nbsp;
+        <%= movieList[i].name %> &nbsp;
+        <%= movieList[i].director %> &nbsp;
+        <%= movieList[i].length %> &nbsp;
+        <%= movieList[i].category %> &nbsp;
+        <%= movieList[i].year_released %> &nbsp;
+        <%= movieList[i].price %> &nbsp; <br>
+        <% } %>
+    </section>
+
+    <h2>Book a Ticket</h2>
+    <form method="POST" action="/booking">
+        <label for="movieId">Choose a movie:</label>
+        <input type="text" name="movieId" id="movieId">
+        <label for="movieDateTime">Choose a date/time:</label>
+        <input type="datetime-local" name="movieDateTime" id="movieDateTime">
+        <input type="submit" value="Confirm">
+    </form>
+
 </body>
+
 </html>
