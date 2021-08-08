@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Records</title>
+</head>
+
+<body>
+    <h2>List of your booked ticket</h2>
+    <section data-position="order">
+        <% for ( var i=0; i<orderList.length; i++) { %>
+        <%= orderList[i].orderId %> &nbsp;
+        <%= orderList[i].movieName %> &nbsp;
+        <%= orderList[i].time %> &nbsp; <br>
+        <% } %>
+    </section>
+
+    <h2>Update a booking</h2>
+    <form method="POST" action="/booking/update">
+        <label for="orderId">Choose a booking:</label>
+        <input type="text" name="orderId" id="orderId">
+        <label for="movieId">Pick a new movie:</label>
+        <input type="text" name="movieId" id="movieId">
+        <label for="movieDateTime">Or pick a new date/time:</label>
+        <input type="datetime-local" name="movieDateTime" id="movieDateTime">
+        <input type="submit" value="Confirm">
+    </form>
+
+    <h2>Delete a booking</h2>
+    <form method="POST" action="/booking/delete">
+        <label for="orderId">Choose a booking:</label>
+        <input type="text" name="orderId" id="orderId">
+        <input type="submit" value="Confirm">
+    </form>
+</body>
+
+</html>
