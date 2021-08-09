@@ -57,9 +57,7 @@ app.get('/records', function(req, res){
     res.render('records.ejs')
 });
 
-app.get('/profile', function(req, res){
-    res.render('profile.ejs')
-});
+app.get('/profile', userController.Info);
 
 app.get('/logout',(req,res) => {
     req.session.destroy();

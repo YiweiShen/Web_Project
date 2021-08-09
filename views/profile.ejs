@@ -21,12 +21,19 @@
     <h2>Your profile</h2>
     <section data-position="user">
         <% for ( var i=0; i<alltheusers.length; i++) { %>
-        <%= alltheusers[i].userId %> &nbsp;
-        <%= alltheusers[i].password %> &nbsp;
-        <%= alltheusers[i].firstname %> &nbsp; 
-        <%= alltheusers[i].lastname %> &nbsp;
-        <%= alltheusers[i].email %> &nbsp;
-        <%= alltheusers[i].address %> &nbsp;
+        <a>Username: </a>
+        <%= alltheusers[i].userId %> &nbsp;<br>
+        <a>Password: </a>
+        <%= alltheusers[i].password %> &nbsp;<br>
+        <a>First Name: </a>
+        <%= alltheusers[i].firstname %> &nbsp; <br>
+        <a>Last Name: </a>
+        <%= alltheusers[i].lastname %> &nbsp;<br>
+        <a>Email: </a>
+        <%= alltheusers[i].email %> &nbsp;<br>
+        <a>Address: </a>
+        <%= alltheusers[i].address %> &nbsp;<br>
+        <a>Phone Number: </a>
         <%= alltheusers[i].phone %> &nbsp; <br>
         <% } %>
     </section>

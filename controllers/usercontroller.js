@@ -3,8 +3,8 @@ var mongoose = require('mongoose'), User = mongoose.model('user');
 module.exports = {
     Info: function(req,res){
         console.log("User info");
-        const {userId} = req.session.userId;
-        User.find({userId}, function(err,results){
+        const userId = req.session.userId;
+        User.find({userId: 'user1'}, function(err,results){
             if(err) throw err;
             console.log(results);
             res.render('profile.ejs', {alltheusers:results});
