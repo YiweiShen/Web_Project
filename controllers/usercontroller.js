@@ -6,7 +6,7 @@ module.exports ={
         const {userId} = req.query;
         User.find({userId}, function(err,results){
             if(err) throw err;
-            res.render('info.ejs', {alltheusers:results});
+            res.render('profile.ejs', {alltheusers:results});
         });
     },
     Login:function(req,res){
@@ -28,11 +28,11 @@ module.exports ={
             "lastname" : req.body.lastname,
             "email" : req.body.email,
             "address" : req.body.address,
-            "userId" : req.body.phone
+            "phone" : req.body.phone
         }
         User.create(userinfo,function(err,results){
             if(err) throw err;
-            res.redirect('/users');
+            res.redirect('/booking');
         });
     }
 }
