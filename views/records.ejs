@@ -21,11 +21,22 @@
 <body>
     <h2>List of your booked ticket</h2>
     <section data-position="order">
-        <% for ( var i=0; i<alltheorders.length; i++) { %>
-        <%= alltheorders[i].orderId %> &nbsp;
-        <%= alltheorders[i].movieName %> &nbsp;
-        <%= alltheorders[i].time %> &nbsp; <br>
-        <% } %>
+        <table class="table table-hover table-bordered m-3 text-center">  
+            <tr class="table-info">
+                <th>OrderId</th>
+                <th>UserId</th>
+                <th>MovieId</th>
+                <th>Movie Date Time</th>
+            </tr>
+            <% for ( var i=0; i<alltheorders.length; i++) { %>
+            <tr>
+                <th class="fw-normal"><%= alltheorders[i].orderId %></th>
+                <th class="fw-normal"><%= alltheorders[i].userId %></th>
+                <th class="fw-normal"><%= alltheorders[i].movieId %></th>
+                <th class="fw-normal"><%= alltheorders[i].movieDateTime %></th>
+            </tr>
+            <% } %>
+        </table>
     </section>
 
     <h2>Update a booking</h2>

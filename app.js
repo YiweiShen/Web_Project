@@ -41,6 +41,11 @@ var userController = require('./controllers/usercontroller.js');
 
 app.get('/booking', movieController.GetAll);
 
+app.get('/booking', function(req, res){
+    res.render('booking.ejs')
+});
+
+app.post('/booking', orderController.Create);
 
 app.get(['/login', '/'], function(req, res){
     res.render('login.ejs')
@@ -52,6 +57,8 @@ app.get('/register', function(req, res){
 });
 
 app.post('/register', userController.Register);
+
+app.get('/records', orderController.GetAll);
 
 app.get('/records', function(req, res){
     res.render('records.ejs')

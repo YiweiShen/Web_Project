@@ -13,7 +13,7 @@
 <div class="collapse navbar-collapse" id="navbarText">
 	<ul class="navbar-nav mr-auto">
 		<li class="nav-item"><a class="nav-link" href="booking">Booking</a></li>
-		<li class="nav-item"><a class="nav-link" href="records">Records</a></li>
+		<li class="nav-item"><a class="nav-link" href="records/">Records</a></li>
 		<li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
 		<li class="nav-item"><a class="nav-link" href="logout">Logout</a>
 		</li>
@@ -52,6 +52,10 @@
 
     <h2 class="text-center m-4">Book a Ticket</h2>
     <form class="container col-lg-4 offset-lg-4" method="POST" action="/booking">
+        <label for="userId">Order ID:</label>
+        <input class="form-control col-xs-4" type="text" name="orderId" id="orderId">
+        <label for="userId">User ID:</label>
+        <input class="form-control col-xs-4" type="text" name="userId" id="userId" value=<%= userId %>>
         <label for="movieId">Choose a movie:</label>
         <select class="form-select" aria-label="Default select example" name="movieId" id="movieId">
             <option selected>Select from the list</option>
