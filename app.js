@@ -14,7 +14,7 @@ require('./models/moviemodel');
 require('./models/ordermodel');
 require('./models/usermodel');
 
-mongoose.connect('mongodb://127.0.0.1:27017/myStudents', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1:27017/MovieBookingDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));

@@ -21,7 +21,9 @@ module.exports ={
                 // check if the password is correct
                 if (results[0].password == password) {
                     res.redirect('/booking');
-                } 
+                } else {
+                    res.redirect('/login');
+                }
             } else {
                 res.redirect('/login');
             }
