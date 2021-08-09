@@ -11,14 +11,20 @@ module.exports ={
     },
     Login:function(req,res){
         console.log("Login");
-        var userId = req.query.userId;
-        var password = req.query.password;
-        User.find({userId}, function(err,results){
+        var userId = req.body.userId;
+        var password = req.body.password;
+        User.find({userId}, function(err, results){
             if(err) throw err;
-            User.find({password}, function(err,results){
-               if(err) throw err;
-               res.redirect('/booking'); 
-            })
+            console.log(results);
+            // check if the userId exists in the database
+            if (results.length != 0) {
+                // check if the password is correct
+                if (results[0].password == password) {
+                    res.redirect('/booking');
+                } 
+            } else {
+                res.redirect('/login');
+            }
         });
     },
     Register: function(req,res){
