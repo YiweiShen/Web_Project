@@ -7,20 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking</title>
 </head>
-
+<header>
+    <nav>
+        <ul>
+            <li><a href="booking">Booking</a></li>
+            <li><a href="records">Records</a></li>
+            <li><a href="profile">Profile</a></li>
+            <li><a href="login">Logout</a></li>
+        </ul>
+    </nav>
+</header>
 <body>
     <h1>Welcome!</h1>
     <!-- add username who login after the welcome word -->
     <h2>List of the available movies</h2>
     <section data-position="movies">
-        <% for ( var i=0; i<movieList.length; i++) { %>
-        <%= movieList[i].movieId %> &nbsp;
-        <%= movieList[i].name %> &nbsp;
-        <%= movieList[i].director %> &nbsp;
-        <%= movieList[i].length %> &nbsp;
-        <%= movieList[i].category %> &nbsp;
-        <%= movieList[i].year_released %> &nbsp;
-        <%= movieList[i].price %> &nbsp; <br>
+        <% for ( var i=0; i<allthemovies.length; i++) { %>
+        <%= allthemovies[i].movieId %> &nbsp;
+        <%= allthemovies[i].name %> &nbsp;
+        <%= allthemovies[i].director %> &nbsp;
+        <%= allthemovies[i].length %> &nbsp;
+        <%= allthemovies[i].category %> &nbsp;
+        <%= allthemovies[i].year_released %> &nbsp;
+        <%= allthemovies[i].price %> &nbsp; <br>
         <% } %>
     </section>
 
@@ -34,5 +43,7 @@
     </form>
 
 </body>
-
+<footer>
+    <p>Final Project - Group 3 - 2021S_CSD 3313_4</p>
+</footer>
 </html>

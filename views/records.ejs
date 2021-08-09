@@ -7,14 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Records</title>
 </head>
-
+<header>
+    <nav>
+        <ul>
+            <li><a href="booking">Booking</a></li>
+            <li><a href="records">Records</a></li>
+            <li><a href="profile">Profile</a></li>
+            <li><a href="login">Logout</a></li>
+        </ul>
+    </nav>
+</header>
 <body>
     <h2>List of your booked ticket</h2>
     <section data-position="order">
-        <% for ( var i=0; i<orderList.length; i++) { %>
-        <%= orderList[i].orderId %> &nbsp;
-        <%= orderList[i].movieName %> &nbsp;
-        <%= orderList[i].time %> &nbsp; <br>
+        <% for ( var i=0; i<alltheorders.length; i++) { %>
+        <%= alltheorders[i].orderId %> &nbsp;
+        <%= alltheorders[i].movieName %> &nbsp;
+        <%= alltheorders[i].time %> &nbsp; <br>
         <% } %>
     </section>
 
