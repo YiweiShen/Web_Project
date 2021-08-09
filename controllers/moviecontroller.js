@@ -5,7 +5,8 @@ module.exports ={
         console.log("Print all the movies");
         Movie.find({}, function(err,results){
             if(err) throw err;
-            res.render('booking.ejs', {allthemovies:results});
+            console.log(req.session.userId);
+            res.render('booking.ejs', {allthemovies:results, userId: req.session.userId});
         });
     },
     GetByName:function(req,res){

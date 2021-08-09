@@ -2,10 +2,22 @@ var express = require('express');
 var mongoose = require('mongoose');
 var path = require('path');
 var bodyParser = require('body-parser');
+var cookieParser = require("cookie-parser");
+var sessions = require('express-session');
+
 var app = express();
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use(cookieParser());
+
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(sessions({
+    secret: "bnlkj9834nkjvnkhisdl34jsd98fj2", // random string
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay },
+    resave: false 
+}));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -30,7 +42,7 @@ var userController = require('./controllers/usercontroller.js');
 app.get('/booking', movieController.GetAll);
 
 
-app.get('/login', function(req, res){
+app.get(['/login', '/'], function(req, res){
     res.render('login.ejs')
 });
 app.post('/login', userController.Login);
@@ -47,6 +59,11 @@ app.get('/records', function(req, res){
 
 app.get('/profile', function(req, res){
     res.render('profile.ejs')
+});
+
+app.get('/logout',(req,res) => {
+    req.session.destroy();
+    res.redirect('/');
 });
 
 app.listen(3000,function(){

@@ -1,11 +1,12 @@
 var mongoose = require('mongoose'), User = mongoose.model('user');
 
-module.exports ={
+module.exports = {
     Info: function(req,res){
         console.log("User info");
-        const {userId} = req.query;
+        const {userId} = req.session.userId;
         User.find({userId}, function(err,results){
             if(err) throw err;
+            console.log(results);
             res.render('profile.ejs', {alltheusers:results});
         });
     },
@@ -20,6 +21,8 @@ module.exports ={
             if (results.length != 0) {
                 // check if the password is correct
                 if (results[0].password == password) {
+                    req.session.userId = userId;
+                    console.log(req.session.userId);
                     res.redirect('/booking');
                 } else {
                     res.redirect('/login');
