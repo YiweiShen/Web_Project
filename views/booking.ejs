@@ -8,43 +8,74 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <title>Booking</title>
 </head>
-<header>
-    <nav>
-        <ul>
-            <li><a href="booking">Booking</a></li>
-            <li><a href="records">Records</a></li>
-            <li><a href="profile">Profile</a></li>
-            <li><a href="logout">Logout</a></li>
-        </ul>
-    </nav>
-</header>
-<body>
-    <h1>Welcome! <%= userId %></h1>
-    <!-- add username who login after the welcome word -->
-    <h2>List of the available movies</h2>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary"> <a
+	class="navbar-brand" href="#">MTBS</a>
+<div class="collapse navbar-collapse" id="navbarText">
+	<ul class="navbar-nav mr-auto">
+		<li class="nav-item"><a class="nav-link" href="booking">Booking</a></li>
+		<li class="nav-item"><a class="nav-link" href="records">Records</a></li>
+		<li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
+		<li class="nav-item"><a class="nav-link" href="logout">Logout</a>
+		</li>
+	</ul>
+</div>
+</nav>
+<body class="d-flex flex-column" style="min-height: 100vh">
+    <main class="flex-fill">
+    <h1 class="text-warning">Welcome! <%= userId %></h1>
+
+    <h1 class="text-center m-4">List of the available movies</h1>
     <section data-position="movies">
-        <% for ( var i=0; i<allthemovies.length; i++) { %>
-        <%= allthemovies[i].movieId %> &nbsp;
-        <%= allthemovies[i].name %> &nbsp;
-        <%= allthemovies[i].director %> &nbsp;
-        <%= allthemovies[i].length %> &nbsp;
-        <%= allthemovies[i].category %> &nbsp;
-        <%= allthemovies[i].year_released %> &nbsp;
-        <%= allthemovies[i].price %> &nbsp; <br>
-        <% } %>
+        <table class="table table-hover table-bordered m-3 text-center">  
+            <tr class="table-info">
+                <th>Movie ID</th>
+                <th>Name</th>
+                <th>Director</th>
+                <th>Length</th>
+                <th>Category</th>
+                <th>Year_released</th>
+                <th>Ticket Price $</th>
+            </tr>
+            <% for ( var i=0; i<allthemovies.length; i++) { %>
+            <tr>
+                <th class="fw-normal"><%= allthemovies[i].movieId %></th>
+                <th class="fw-normal"><%= allthemovies[i].name %></th>
+                <th class="fw-normal"><%= allthemovies[i].director %></th>
+                <th class="fw-normal"><%= allthemovies[i].length %></th>
+                <th class="fw-normal"><%= allthemovies[i].category %></th>
+                <th class="fw-normal"><%= allthemovies[i].year_released %></th>
+                <th class="fw-normal"><%= allthemovies[i].price %></th>
+            </tr>
+            <% } %>
+        </table>
     </section>
 
-    <h2>Book a Ticket</h2>
-    <form method="POST" action="/booking">
+    <h2 class="text-center m-4">Book a Ticket</h2>
+    <form class="container col-lg-4 offset-lg-4" method="POST" action="/booking">
         <label for="movieId">Choose a movie:</label>
-        <input type="text" name="movieId" id="movieId">
+        <select class="form-select" aria-label="Default select example" name="movieId" id="movieId">
+            <option selected>Select from the list</option>
+            <% for ( var i=0; i<allthemovies.length; i++) { %>
+                <option value="<%= allthemovies[i].movieId %>">
+                    <%= allthemovies[i].movieId %> - <%= allthemovies[i].name %>
+                </option>
+                <% } %>
+        </select>
+        <br>
         <label for="movieDateTime">Choose a date/time:</label>
-        <input type="datetime-local" name="movieDateTime" id="movieDateTime">
-        <input type="submit" value="Confirm">
+        <input class="form-control col-xs-4" type="datetime-local" name="movieDateTime" id="movieDateTime"> <br>
+        <input class="btn btn-primary mx-auto d-block" type="submit" value="Confirm">
     </form>
-
+    <br>
+    <br>
+    <br>
+</main>
 </body>
-<footer>
-    <p>Final Project - Group 3 - 2021S_CSD 3313_4</p>
+<footer class="footer mb-5">
+    <div class="container text-center">
+        <span class="text-muted">Contact Number: 233432323</span><br /> 
+        <span class="text-muted">Email: bob@moviebooking.com</span><br /> 
+        <span class="text-muted">Address: 3532 Yonge St, North York, ON M2M 4K2</span>
+    </div>
 </footer>
 </html>
