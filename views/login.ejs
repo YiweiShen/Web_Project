@@ -5,28 +5,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <title>Login</title>
 </head>
-<header>
-    <!-- add header -->
-</header>
-
-<body>
-    <h1>Welcome to the Movie Ticket Booking System</h1>
-    <!-- We need a name for the website -->
-    <h2>Login</h2>
-    <form method="POST" action="/login">
-        <label for="userId">Username:</label>
-        <input type="text" name="userId" id="userId"> <br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password"> <br>
-        <input type="submit" value="Login">
-        <p>Don't have an account?</p><a href="register">Sign Up</a>
-    </form>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary"> 
+    <a class="navbar-brand" href="#">MTBS</a>
+</nav>
+<body class="d-flex flex-column" style="min-height: 100vh">
+    <main class="flex-fill">
+        <h1 class="m-5 text-center">Welcome to the Movie Ticket Booking System</h1>
+        <h2 class="m-5 text-center">Login</h2>
+        <form class="container col-lg-4 offset-lg-4" method="POST" action="/login">
+            <div class="row justify-content-center">
+                <div class="col-xs-4">
+                    <label for="userId">Username:</label>
+                    <input class="form-control col-xs-4" type="text" name="userId" id="userId"
+                        placeholder="Enter username">
+                    <br>
+                </div>
+                <div class="col-xs-4">
+                    <label for="password">Password:</label>
+                    <input class="form-control col-xs-4" type="password" name="password" id="password"
+                        placeholder="Enter password"> <br>
+                </div>
+            </div>
+                <input class="btn btn-primary mx-auto d-block" type="submit" value="Login">
+                <p class="text-secondary text-center mt-4">Don't have an account?</p>
+                <button class="btn btn-success mx-auto d-block" href="register">Sign Up</button>
+        </form>
+    </main>
 </body>
 
-<footer>
-    <!-- add footer -->
+<footer class="footer mb-5">
+    <div class="container text-center">
+        <span class="text-muted">Contact Number: 233432323</span><br /> 
+        <span class="text-muted">Email: bob@moviebooking.com</span><br /> 
+        <span class="text-muted">Address: 3532 Yonge St, North York, ON M2M 4K2</span>
+    </div>
 </footer>
 
 </html>
