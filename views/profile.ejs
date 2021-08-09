@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="booking">Booking</a></li>
+            <li><a href="records">Records</a></li>
+            <li><a href="profile">Profile</a></li>
+            <li><a href="login">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+    <h2>Your profile</h2>
+    <section data-position="user">
+        <% for ( var i=0; i<alltheusers.length; i++) { %>
+        <%= alltheusers[i].userId %> &nbsp;
+        <%= alltheusers[i].password %> &nbsp;
+        <%= alltheusers[i].firstname %> &nbsp; 
+        <%= alltheusers[i].lastname %> &nbsp;
+        <%= alltheusers[i].email %> &nbsp;
+        <%= alltheusers[i].address %> &nbsp;
+        <%= alltheusers[i].phone %> &nbsp; <br>
+        <% } %>
+    </section>
+</body>
+</html>
