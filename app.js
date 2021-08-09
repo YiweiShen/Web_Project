@@ -13,7 +13,7 @@ require('./models/moviemodel');
 require('./models/ordermodel');
 require('./models/usermodel');
 
-mongoose.connect('mongodb://127.0.0.1:27017/MovieDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1:27017/myStudents', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
@@ -32,12 +32,13 @@ app.get('/booking', movieController.GetAll);
 app.get('/login', function(req, res){
     res.render('login.ejs')
 });
+app.post('/login', userController.Login);
 
 app.get('/register', function(req, res){
     res.render('register.ejs')
 });
 
-app.post('register', userController.Register);
+app.post('/register', userController.Register);
 
 app.get('/records', function(req, res){
     res.render('records.ejs')

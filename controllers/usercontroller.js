@@ -13,9 +13,12 @@ module.exports ={
         console.log("Login");
         var userId = req.query.userId;
         var password = req.query.password;
-        User.find({'userId':{userId},'password':{password}}, function(err,results){
+        User.find({userId}, function(err,results){
             if(err) throw err;
-            res.redirect('/booking');
+            User.find({password}, function(err,results){
+               if(err) throw err;
+               res.redirect('/booking'); 
+            })
         });
     },
     Register: function(req,res){
