@@ -3,6 +3,9 @@ var mongoose = require('mongoose'), User = mongoose.model('user');
 module.exports = {
     Info: function(req,res){
         console.log("User info");
+        if (!req.session.userId) {
+            res.redirect('/');
+        }
         const userId = req.session.userId;
         User.find({userId: userId}, function(err,results){
             if(err) throw err;

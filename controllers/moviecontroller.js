@@ -5,8 +5,11 @@ module.exports ={
         console.log("Print all the movies");
         Movie.find({}, function(err,results){
             if(err) throw err;
-            console.log(req.session.userId);
-            res.render('booking.ejs', {allthemovies:results, userId: req.session.userId});
+            if (!req.session.userId){
+                res.redirect('/');
+            } else {
+                res.render('booking.ejs', {allthemovies:results, userId: req.session.userId});
+            }
         });
     },
     GetByName:function(req,res){

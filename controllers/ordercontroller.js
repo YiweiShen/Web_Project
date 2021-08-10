@@ -3,6 +3,9 @@ var mongoose = require('mongoose'), Order = mongoose.model('order');
 module.exports ={
     GetAll: function(req,res){
         console.log("Order history");
+        if (!req.session.userId) {
+            res.redirect('/');
+        }
         const userId = req.session.userId;
         Order.find({userId}, function(err,results){
             if(err) throw err;

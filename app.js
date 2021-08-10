@@ -2,21 +2,17 @@ var express = require('express');
 var mongoose = require('mongoose');
 var path = require('path');
 var bodyParser = require('body-parser');
-var cookieParser = require("cookie-parser");
 var sessions = require('express-session');
 
 var app = express();
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-app.use(cookieParser());
 
-const oneDay = 1000 * 60 * 60 * 24;
 app.use(sessions({
     secret: "bnlkj9834nkjvnkhisdl34jsd98fj2", // random string
     saveUninitialized: true,
     expires: new Date(Date.now() + (1000 * 60 * 60)),  // session expire after 1 hour  
-    cookie: { maxAge: oneDay },
     resave: false 
 }));
 
@@ -41,10 +37,6 @@ var userController = require('./controllers/usercontroller.js');
 
 
 app.get('/booking', movieController.GetAll);
-
-app.get('/booking', function(req, res){
-    res.render('booking.ejs', {userId: req.session.userId})
-});
 
 app.post('/booking', orderController.Create);
 
