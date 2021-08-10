@@ -12,6 +12,7 @@ module.exports ={
             }
         });
     },
+
     GetByName:function(req,res){
         console.log("List of the movies");
         const {name} = req.query;
@@ -20,6 +21,7 @@ module.exports ={
             res.render('booking.ejs', {allthemovies:results});
         });
     },
+
     GetByYear:function(req,res){
         console.log("List of the movies");
         var year = req.query.year;

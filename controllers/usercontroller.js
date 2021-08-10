@@ -13,6 +13,7 @@ module.exports = {
             res.render('profile.ejs', {alltheusers:results});
         });
     },
+
     Login:function(req,res){
         console.log("Login");
         var userId = req.body.userId;
@@ -35,6 +36,7 @@ module.exports = {
             }
         });
     },
+
     Register: function(req,res){
         console.log("Regiser");
         var userinfo = req.body;

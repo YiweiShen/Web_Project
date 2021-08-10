@@ -35,7 +35,6 @@ var movieController = require('./controllers/moviecontroller.js');
 var orderController = require('./controllers/ordercontroller.js');
 var userController = require('./controllers/usercontroller.js');
 
-
 app.get('/booking', movieController.GetAll);
 
 app.post('/booking', orderController.Create);
@@ -55,11 +54,31 @@ app.get('/records', orderController.GetAll);
 
 app.get('/profile', userController.Info);
 
+app.post('/records/update', orderController.Update);
+
+app.post('/records/delete', orderController.Delete);
 
 app.get('/logout',(req,res) => {
     // clear session when logout
     req.session.destroy();
     res.redirect('/');
+});
+
+// PUT method to be used in Postman
+app.put('/records/update/:orderId/:movieId/:movieDateTime', function (req, res) {
+    var newOrder = {$set:{movieId: req.params.movieId, movieDateTime: req.params.movieDateTime}};
+    Order.updateOne({orderId}, newOrder, function(err,results){
+        if(err) throw err;
+    });
+    res.send('Got a PUT request at /records/update');
+});
+
+// DELETE method to be used in Postman
+app.delete('/records/delete/:orderId', function (req, res) {
+    Order.deleteOne({orderId}, function(err,results) {
+        if(err) throw err;
+    });
+    res.send('Got a PUT request at /records/delete');
 });
 
 app.listen(3000,function(){

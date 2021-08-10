@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <title>Booking Records</title>
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary"> <a
@@ -42,41 +44,55 @@
         </table>
     </section>
 
-    <h2 class="text-center m-5">UPDATE a booking</h2>
-    <form class="container col-lg-4 offset-lg-4" method="PUT" action="/booking/update">
-        <label for="orderId">Choose a booking to Update:</label>
-        <select class="form-select" aria-label="Default select example" name="orderId" id="orderId">
-            <option selected>Select from the list</option>
-            <% for ( var i=0; i<alltheorders.length; i++) { %>
-                <option value="<%= alltheorders[i]._id %>">
-                    <%= alltheorders[i]._id %> - <%= alltheorders[i].movieId %> - <%= alltheorders[i].movieDateTime %>
-                </option>
-                <% } %>
-        </select>
-        <span class="text-danger" id="orderId_error_message"></span>
-        <br>
-        <label for="movieId">Pick a new movie:</label>
-        <input class="form-control col-xs-4" type="text" name="movieId" id="movieId"> <br>
-        <label for="movieDateTime">Or pick a new date/time:</label>
-        <input class="form-control col-xs-4" type="datetime-local" name="movieDateTime" id="movieDateTime"> <br>
-        <input class="btn btn-primary mx-auto d-block m-3" type="submit" value="Confirm">
-    </form>
-
-    <h2 class="text-center m-5">DELETE a booking</h2>
-    <form class="container col-lg-4 offset-lg-4" method="DELETE" action="/booking/delete">
-        <label for="orderId">Choose a booking to delete:</label>
-        <select class="form-select" aria-label="Default select example" name="orderId" id="orderId">
-            <option selected>Select from the list</option>
-            <% for ( var i=0; i<alltheorders.length; i++) { %>
-                <option value="<%= alltheorders[i]._id %>">
-                    <%= alltheorders[i]._id %> - <%= alltheorders[i].movieId %> - <%= alltheorders[i].movieDateTime %>
-                </option>
-                <% } %>
-        </select>
-        <span class="text-danger" id="orderId_error_message"></span>
-        <br>
-        <input class="btn btn-primary mx-auto d-block mt-2 mb-5" type="submit" value="Confirm">
-    </form>
+    <div id="update_booking">
+        <h2 class="text-center m-5">UPDATE a booking</h2>
+        <form class="container col-lg-4 offset-lg-4" method="POST" action="/records/update">
+            <label for="orderId_update">Choose a booking to Update:</label>
+            <select class="form-select" aria-label="Default select example" name="orderId_update" id="orderId_update">
+                <option selected>Select from the list</option>
+                <% for ( var i=0; i<alltheorders.length; i++) { %>
+                    <option value="<%= alltheorders[i]._id %>">
+                        <%= alltheorders[i]._id %> - <%= alltheorders[i].movieId %> - <%= alltheorders[i].movieDateTime %>
+                    </option>
+                    <% } %>
+            </select>
+            <span class="text-danger" id="orderId_update_error_message"></span>
+            <br>
+            <label for="movieId">Pick a new movie:</label>
+            <select class="form-select" aria-label="Default select example" name="movieId" id="movieId">
+                <option selected>Select from the list</option>
+                <% for ( var i=0; i<allthemovies.length; i++) { %>
+                    <option value="<%= allthemovies[i].movieId %>">
+                        <%= allthemovies[i].movieId %> - <%= allthemovies[i].name %>
+                    </option>
+                    <% } %>
+            </select>
+            <span class="text-danger" id="movieId_update_error_message"></span>
+            <br>
+            <label for="movieDateTime">Pick a new date/time:</label>
+            <input class="form-control col-xs-4" type="datetime-local" name="movieDateTime" id="movieDateTime"> 
+            <span class="text-danger" id="movieDateTime_update_error_message"></span>
+            <br>
+            <input class="btn btn-primary mx-auto d-block m-3" type="submit" value="Confirm">
+        </form>
+    </div>
+    <div id="delete_booking">
+        <h2 class="text-center m-5">DELETE a booking</h2>
+        <form class="container col-lg-4 offset-lg-4" method="POST" action="/records/delete">
+            <label for="orderId_delete">Choose a booking to delete:</label>
+            <select class="form-select" aria-label="Default select example" name="orderId_delete" id="orderId_delete">
+                <option selected>Select from the list</option>
+                <% for ( var i=0; i<alltheorders.length; i++) { %>
+                    <option value="<%= alltheorders[i]._id %>">
+                        <%= alltheorders[i]._id %> - <%= alltheorders[i].movieId %> - <%= alltheorders[i].movieDateTime %>
+                    </option>
+                    <% } %>
+            </select>
+            <span class="text-danger" id="orderId_delete_error_message"></span>
+            <br>
+            <input class="btn btn-primary mx-auto d-block mt-2 mb-5" type="submit" value="Confirm">
+        </form>
+    </div>
 </main>
 </body>
 <footer class="footer mb-5">
@@ -86,4 +102,79 @@
         <span class="text-muted">Address: 3532 Yonge St, North York, ON M2M 4K2</span>
     </div>
 </footer>
+
+<script>
+    // Client-side Validtion
+    $(function () {
+        $("#orderId_update_error_message").hide();
+        $("#movieId_update_error_message").hide();
+        $("#movieDateTime_update_error_message").hide();
+        $("#orderId_delete_error_message").hide();
+
+        $("#orderId_update").focusout(function () {
+            check_orderId_update();
+        });
+
+        $("#movieId").focusout(function () {
+            check_movieId();
+        });
+
+        $("#movieDateTime").focusout(function () {
+            check_movieDateTime();
+        });
+
+        $("#orderId_delete").focusout(function () {
+            check_orderId_delete();
+        });
+
+        function check_orderId_update(){
+            var orderId = $("#orderId_update").val();
+            if (orderId !== 'Select from the list') {
+                $("#orderId_update_error_message").hide();
+                $("#orderId_update").css("border-bottom", "2px solid #34F458");
+            } else {
+                $("#orderId_update_error_message").html("Please pick one order");
+                $("#orderId_update_error_message").show();
+                $("#orderId_update").css("border-bottom", "2px solid #F90A0A");
+            }
+        }
+
+        function check_movieId() {
+            var movieId = $("#movieId").val();
+            if (movieId !== 'Select from the list') {
+                $("#movieId_update_error_message").hide();
+                $("#movieId").css("border-bottom", "2px solid #34F458");
+            } else {
+                $("#movieId_update_error_message").html("Please pick one movie");
+                $("#movieId_update_error_message").show();
+                $("#movieId").css("border-bottom", "2px solid #F90A0A");
+            }
+        }
+
+        function check_movieDateTime(){
+            var movieDateTime = $("#movieDateTime").val();
+            if (!movieDateTime) {
+                $("#movieDateTime_update_error_message").html("Please choose a date");
+                $("#movieDateTime_update_error_message").show();
+                $("#movieDateTime").css("border-bottom", "2px solid #F90A0A");
+            } else {
+                $("#movieDateTime_update_error_message").hide();
+                $("#movieDateTime").css("border-bottom", "2px solid #34F458");
+            }
+        }
+
+        function check_orderId_delete(){
+            var orderId = $("#orderId_delete").val();
+            if (orderId !== 'Select from the list') {
+                $("#orderId_delete_error_message").hide();
+                $("#orderId_delete").css("border-bottom", "2px solid #34F458");
+            } else {
+                $("#orderId_delete_error_message").html("Please pick one order");
+                $("#orderId_delete_error_message").show();
+                $("#orderId_delete").css("border-bottom", "2px solid #F90A0A");
+            }
+        }
+
+    });
+</script>
 </html>
