@@ -42,7 +42,7 @@ var userController = require('./controllers/usercontroller.js');
 app.get('/booking', movieController.GetAll);
 
 app.get('/booking', function(req, res){
-    res.render('booking.ejs')
+    res.render('booking.ejs', {userId: req.session.userId})
 });
 
 app.post('/booking', orderController.Create);
@@ -60,11 +60,8 @@ app.post('/register', userController.Register);
 
 app.get('/records', orderController.GetAll);
 
-app.get('/records', function(req, res){
-    res.render('records.ejs')
-});
-
 app.get('/profile', userController.Info);
+
 
 app.get('/logout',(req,res) => {
     req.session.destroy();

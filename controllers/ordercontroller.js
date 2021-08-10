@@ -3,7 +3,8 @@ var mongoose = require('mongoose'), Order = mongoose.model('order');
 module.exports ={
     GetAll: function(req,res){
         console.log("Order history");
-        Order.find({}, function(err,results){
+        const userId = req.session.userId;
+        Order.find({userId}, function(err,results){
             if(err) throw err;
             res.render('records.ejs', {alltheorders:results});
         });
