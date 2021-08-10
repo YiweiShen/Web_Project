@@ -66,8 +66,11 @@ app.get('/logout',(req,res) => {
 
 // PUT method to be used in Postman
 app.put('/records/update/:orderId/:movieId/:movieDateTime', function (req, res) {
-    var newOrder = {$set:{movieId: req.params.movieId, movieDateTime: req.params.movieDateTime}};
-    Order.updateOne({orderId}, newOrder, function(err,results){
+    Order = mongoose.model('order');
+    orderId = req.params.orderId;
+    movieId = req.params.movieId;
+    movieDateTime = req.params.movieDateTime;
+    Order.updateOne({_id: orderId}, {movieId: req.params.movieId, movieDateTime: req.params.movieDateTime}, function(err,results){
         if(err) throw err;
     });
     res.send('Got a PUT request at /records/update');
@@ -75,10 +78,13 @@ app.put('/records/update/:orderId/:movieId/:movieDateTime', function (req, res) 
 
 // DELETE method to be used in Postman
 app.delete('/records/delete/:orderId', function (req, res) {
-    Order.deleteOne({orderId}, function(err,results) {
+    Order = mongoose.model('order');
+    orderId = req.params.orderId;
+    console.log(orderId);
+    Order.deleteOne({_id: orderId}, function(err,results) {
         if(err) throw err;
     });
-    res.send('Got a PUT request at /records/delete');
+    res.send('Got a DELETE request at /records/delete');
 });
 
 app.listen(3000,function(){
