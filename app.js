@@ -15,6 +15,7 @@ const oneDay = 1000 * 60 * 60 * 24;
 app.use(sessions({
     secret: "bnlkj9834nkjvnkhisdl34jsd98fj2", // random string
     saveUninitialized: true,
+    expires: new Date(Date.now() + (1000 * 60 * 60)),  // session expire after 1 hour  
     cookie: { maxAge: oneDay },
     resave: false 
 }));
@@ -64,6 +65,7 @@ app.get('/profile', userController.Info);
 
 
 app.get('/logout',(req,res) => {
+    // clear session when logout
     req.session.destroy();
     res.redirect('/');
 });

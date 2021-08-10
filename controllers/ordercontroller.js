@@ -30,14 +30,13 @@ module.exports ={
         console.log("Start a new order");
         var orderinfo = req.body;
         orderinfo={
-            "orderId" : req.body.orderId,
             "userId" : req.body.userId,
             "movieId": req.body.movieId,
             "movieDateTime" : req.body.movieDateTime
         }
         Order.create(orderinfo,function(err,results){
             if(err) throw err;
-            res.redirect('/booking');
+            res.redirect('/records');
         });
     }
 }
