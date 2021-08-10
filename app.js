@@ -39,6 +39,8 @@ app.get('/booking', movieController.GetAll);
 
 app.post('/booking', orderController.Create);
 
+app.get('/booking/findbyname', movieController.GetByName);
+
 app.get(['/login', '/'], function(req, res){
     res.render('login.ejs')
 });

@@ -52,6 +52,13 @@
             <% } %>
         </table>
     </section>
+    <br />
+    <h2 class="text-center m-4">Search by movie name</h2>
+    <form class="container col-lg-4 offset-lg-4" action="/booking/findbyname" method="GET">
+    <input type="text" name="name" placeholder="Enter movie name" />
+    <input type="submit" value="Search name" />
+    </form>
+    <br />
 
     <h2 class="text-center m-4">Book a Ticket</h2>
     <form class="container col-lg-4 offset-lg-4" method="POST" action="/booking">
