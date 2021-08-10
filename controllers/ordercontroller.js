@@ -8,6 +8,23 @@ module.exports ={
             res.render('records.ejs', {alltheorders:results});
         });
     },
+    Delete: function(req,res){
+        console.log("Delete");
+        const {orderId} = req.query;
+        Order.deleteOne({orderId}, function(err,results){
+            if(err) throw err;
+            res.render('records.ejs', {alltheorders:results});
+        });
+    },
+    Update:function(req,res){
+        console.log("Update");
+        const {orderId} = req.query;
+        var newOrder = {$set:{name: req.body.movieId, movieDateTime : req.body.movieDateTime}};
+        Order.updateOne({orderId}, newOrder, function(err,results){
+            if(err) throw err;
+            res.render('records.ejs', {alltheorders:results});
+        });
+    },
     Create: function(req,res){
         console.log("Start a new order");
         var orderinfo = req.body;
