@@ -22,7 +22,7 @@
 </nav>
 <body class="d-flex flex-column" style="min-height: 100vh">
     <main class="flex-fill">
-    <h2>List of your booked ticket</h2>
+    <h2 class="text-center mt-5">List of your booked ticket</h2>
     <section data-position="order">
         <table class="table table-hover table-bordered m-3 text-center">  
             <tr class="table-info">
@@ -42,22 +42,40 @@
         </table>
     </section>
 
-    <h2>Update a booking</h2>
-    <form method="PUT" action="/booking/update">
-        <label for="orderId">Choose a booking:</label>
-        <input type="text" name="orderId" id="orderId">
+    <h2 class="text-center m-5">UPDATE a booking</h2>
+    <form class="container col-lg-4 offset-lg-4" method="PUT" action="/booking/update">
+        <label for="orderId">Choose a booking to Update:</label>
+        <select class="form-select" aria-label="Default select example" name="orderId" id="orderId">
+            <option selected>Select from the list</option>
+            <% for ( var i=0; i<alltheorders.length; i++) { %>
+                <option value="<%= alltheorders[i]._id %>">
+                    <%= alltheorders[i]._id %> - <%= alltheorders[i].movieId %> - <%= alltheorders[i].movieDateTime %>
+                </option>
+                <% } %>
+        </select>
+        <span class="text-danger" id="orderId_error_message"></span>
+        <br>
         <label for="movieId">Pick a new movie:</label>
-        <input type="text" name="movieId" id="movieId">
+        <input class="form-control col-xs-4" type="text" name="movieId" id="movieId"> <br>
         <label for="movieDateTime">Or pick a new date/time:</label>
-        <input type="datetime-local" name="movieDateTime" id="movieDateTime">
-        <input type="submit" value="Confirm">
+        <input class="form-control col-xs-4" type="datetime-local" name="movieDateTime" id="movieDateTime"> <br>
+        <input class="btn btn-primary mx-auto d-block m-3" type="submit" value="Confirm">
     </form>
 
-    <h2>Delete a booking</h2>
-    <form method="DELETE" action="/booking/delete">
-        <label for="orderId">Choose a booking:</label>
-        <input type="text" name="orderId" id="orderId">
-        <input type="submit" value="Confirm">
+    <h2 class="text-center m-5">DELETE a booking</h2>
+    <form class="container col-lg-4 offset-lg-4" method="DELETE" action="/booking/delete">
+        <label for="orderId">Choose a booking to delete:</label>
+        <select class="form-select" aria-label="Default select example" name="orderId" id="orderId">
+            <option selected>Select from the list</option>
+            <% for ( var i=0; i<alltheorders.length; i++) { %>
+                <option value="<%= alltheorders[i]._id %>">
+                    <%= alltheorders[i]._id %> - <%= alltheorders[i].movieId %> - <%= alltheorders[i].movieDateTime %>
+                </option>
+                <% } %>
+        </select>
+        <span class="text-danger" id="orderId_error_message"></span>
+        <br>
+        <input class="btn btn-primary mx-auto d-block mt-2 mb-5" type="submit" value="Confirm">
     </form>
 </main>
 </body>
