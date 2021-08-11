@@ -15,9 +15,9 @@ mongoose.model('movie',movieSchema);
 // manually insert these records into the mongodb
 // use MovieBookingDB
 // db.movies.insert({movieId: "1001", name:"The Shawshank Redemption", director:"Frank Darabont", length:"142 min", category: "Drama", year_released: "1994", price: 20})
-// db.movies.insert({movieId: "1002", name:"Another Movie", director:"Frank Smith", length:"133 min", category: "Music", year_released: "1999", price: 25})
-// db.movies.insert({movieId: "1003", name:"Third Movie", director:"John Darabont", length:"122 min", category: "Drama", year_released: "2002", price: 30})
-// db.movies.insert({movieId: "1004", name:"The Shawshank Redemption", director:"Frank Darabont", length:"142 min", category: "Drama", year_released: "1994", price: 30})
+// db.movies.insert({movieId: "1002", name:"Batman Begins", director:"Christopher Nolan", length:"140 min", category: "Science Fiction", year_released: "2005", price: 25})
+// db.movies.insert({movieId: "1003", name:"The Dark Knight", director:"Christopher Nolan", length:"152 min", category: "Science Fiction", year_released: "2008", price: 30})
+// db.movies.insert({movieId: "1004", name:"The Dark Knight Rises", director:"Christopher Nolan", length:"165 min", category: "Science Fiction", year_released: "2012", price: 30})
 // db.movies.insert({movieId: "1005", name:"Titanic", director:"James Cameron", length:"194 min", category: "Drama", year_released: "1994", price: 35})
 // db.movies.insert({movieId: "1006", name:"Coco", director:"Lee Unkrich", length:"105 min", category: "Comedy", year_released: "2017", price: 35})
 // db.movies.insert({movieId: "1007", name:"Green Book", director:"Peter Farrelly", length:"130 min", category: "Drama", year_released: "2018", price: 30})

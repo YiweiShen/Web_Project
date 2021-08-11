@@ -193,7 +193,7 @@
         }
 
         function check_address() {
-            var pattern = /^[a-zA-Z0-9,]*$/;
+            var pattern = /^[a-zA-Z0-9,\s]*$/;
             var address = $("#address").val();
             if (pattern.test(address) && address !== '') {
                 $("#address_error_message").hide();
