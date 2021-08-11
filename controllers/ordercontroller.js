@@ -42,15 +42,24 @@ module.exports ={
     },
     Create: function(req,res){
         console.log("Start a new order");
+        var movieId = req.body.movieId;
+        var date = req.body.movieDateTime;
         var orderinfo = req.body;
         orderinfo={
             "userId" : req.body.userId,
             "movieId": req.body.movieId,
             "movieDateTime" : req.body.movieDateTime
         }
-        Order.create(orderinfo,function(err,results){
-            if(err) throw err;
-            res.redirect('/records');
-        });
+        console.log(movieId);
+        console.log(date);
+        if(movieId == "Select from the list" || parseFloat(date).toString() == "NaN"){
+            res.redirect('/booking');
+        }else{
+            Order.create(orderinfo,function(err,results){
+                if(err) throw err;
+                res.redirect('/records');
+            });
+        }
+        
     }
 }
