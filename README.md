@@ -1,2 +1,2 @@
-# Web_Project: Movie Ticket Booking System
-CSD 3313 Final Project
+# Movie Ticket Booking System
+CSD 3313 Web Final Project
