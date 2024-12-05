@@ -21,7 +21,7 @@
     "bootstrap-icons": "^1.5.0",
     "cookie-parser": "^1.4.7",
     "ejs": "^3.1.10",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "express-session": "^1.18.1",
     "install": "^0.13.0",
     "mongoose": "^8.8.3",
