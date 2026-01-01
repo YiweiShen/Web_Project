@@ -17,11 +17,11 @@
   },
   "homepage": "https://github.com/YiWeiShen/Web_Project#readme",
   "dependencies": {
-    "body-parser": "^1.20.3",
+    "body-parser": "^1.20.4",
     "bootstrap-icons": "^1.5.0",
     "cookie-parser": "^1.4.7",
     "ejs": "^3.1.10",
-    "express": "^4.21.2",
+    "express": "^4.22.1",
     "express-session": "^1.18.2",
     "install": "^0.13.0",
     "mongoose": "^8.9.5",
